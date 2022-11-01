@@ -5,10 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.criptoFragment.CriptoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_coin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="test2" />
-
+        android:layout_margin="10dp"
+        tools:listitem="@layout/item_coin_info"
+        />
 </FrameLayout>
