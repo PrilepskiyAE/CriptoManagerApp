@@ -1,6 +1,7 @@
 package com.prilepskiy.criptomanagerapp.di
 
 import com.prilepskiy.criptomanagerapp.BuildConfig
+import com.prilepskiy.criptomanagerapp.data.dataservice.CriptoApiService
 import com.prilepskiy.criptomanagerapp.data.utils.HeaderInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -29,6 +30,7 @@ val apiModule = module {
             }
             .build()
 }
+    single<CriptoApiService> { get<Retrofit>().create(CriptoApiService::class.java) }
 }
 val repositoryModule = module {
 
