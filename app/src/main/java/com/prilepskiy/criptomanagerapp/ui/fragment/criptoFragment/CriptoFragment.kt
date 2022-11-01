@@ -17,7 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class CriptoFragment : FragmentBaseNCMVVM<CriptoViewModel, FragmentCriptoBinding>() {
     override val binding: FragmentCriptoBinding by viewBinding()
     override val viewModel: CriptoViewModel by viewModel()
-    override fun onEach() {
-
+    override fun onView() {
+        viewModel.getCoinList()
     }
 }

@@ -2,7 +2,9 @@ package com.prilepskiy.criptomanagerapp.di
 
 import com.prilepskiy.criptomanagerapp.BuildConfig
 import com.prilepskiy.criptomanagerapp.data.dataservice.CriptoApiService
+import com.prilepskiy.criptomanagerapp.data.repository.CriptoRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.utils.HeaderInterceptor
+import com.prilepskiy.criptomanagerapp.domain.repository.CriptoRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -33,5 +35,5 @@ val apiModule = module {
     single<CriptoApiService> { get<Retrofit>().create(CriptoApiService::class.java) }
 }
 val repositoryModule = module {
-
+    single<CriptoRepository> { CriptoRepositoryImpl(get()) }
 }
