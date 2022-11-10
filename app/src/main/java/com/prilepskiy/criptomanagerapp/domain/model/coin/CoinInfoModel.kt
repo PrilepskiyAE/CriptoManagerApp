@@ -33,6 +33,9 @@ data class CoinInfoModel(
     val fromSymbol:String,
     val toSymbol:String,
     val lastUpdate:String,
+    val lowday: String,
+    val highday: String,
+
     val favorite:Boolean,
 
 ): Parcelable {
@@ -73,6 +76,8 @@ data class CoinInfoModel(
             fromSymbol=data.RAW?.USD?.FROMSYMBOL?:"",
             toSymbol=data.RAW?.USD?.TOSYMBOL?:"",
            lastUpdate =convertTimestampToTime( data.RAW?.USD?.LASTUPDATE?:0),
+           highday = data.RAW?.USD?.HIGHDAY?:"",
+           lowday=data.RAW?.USD?.LOWDAY?:"",
            favorite = false
        )
     }

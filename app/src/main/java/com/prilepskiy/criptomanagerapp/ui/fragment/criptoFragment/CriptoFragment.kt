@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.prilepskiy.criptomanagerapp.R
 import com.prilepskiy.criptomanagerapp.databinding.FragmentConvertorBinding
 import com.prilepskiy.criptomanagerapp.databinding.FragmentCriptoBinding
@@ -24,7 +25,9 @@ class CriptoFragment : FragmentBaseNCMVVM<CriptoViewModel, FragmentCriptoBinding
     override fun onEach() {
         val listAdapter:CoinAdapter= CoinAdapter({
                   navigateFragment(CriptoFragmentDirections.actionNavigationCriptoToCriptoInfoFragment(it))
-        },{})
+        },{
+            Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
+        })
         viewModel.getCoinList()
         binding.listCoin.adapter=listAdapter
         onEach(viewModel.coinList){
