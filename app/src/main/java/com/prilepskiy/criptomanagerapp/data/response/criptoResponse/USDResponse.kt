@@ -18,7 +18,7 @@ data class USDResponse(
     val IMAGEURL: String,
     val LASTMARKET: String,
     val LASTTRADEID: String,
-    val LASTUPDATE: String,
+    val LASTUPDATE: Long,
     val LASTVOLUME: String,
     val LASTVOLUMETO: String,
     val LOW24HOUR: String,
