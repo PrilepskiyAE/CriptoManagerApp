@@ -31,12 +31,14 @@ class CriptoFragment : FragmentBaseNCMVVM<CriptoViewModel, FragmentCriptoBinding
         viewModel.getCoinList()
         binding.listCoin.adapter=listAdapter
         onEach(viewModel.coinList){
-            Log.d("CriptoViewModel", "onEach: $it")
             listAdapter.submitList(it)
+            if (it != null) {
+                if (it.isNotEmpty())
+                    binding.progressBar2.visibility=View.GONE
+            }
         }
-    }
-    override fun onView() {
 
     }
+
 
 }
