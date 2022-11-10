@@ -13,6 +13,7 @@ import com.prilepskiy.criptomanagerapp.ui.adapter.coinadapter.CoinAdapter
 import com.prilepskiy.criptomanagerapp.ui.base.FragmentBaseNCMVVM
 import com.prilepskiy.criptomanagerapp.ui.base.viewBinding
 import com.prilepskiy.criptomanagerapp.ui.fragment.convertorFragment.ConvertorViewModel
+import com.prilepskiy.criptomanagerapp.ui.fragment.criptoInfoFragment.CriptoInfoFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -21,7 +22,9 @@ class CriptoFragment : FragmentBaseNCMVVM<CriptoViewModel, FragmentCriptoBinding
     override val viewModel: CriptoViewModel by viewModel()
 
     override fun onEach() {
-        val listAdapter:CoinAdapter= CoinAdapter()
+        val listAdapter:CoinAdapter= CoinAdapter({
+                  navigateFragment(CriptoFragmentDirections.actionNavigationCriptoToCriptoInfoFragment(it))
+        },{})
         viewModel.getCoinList()
         binding.listCoin.adapter=listAdapter
         onEach(viewModel.coinList){

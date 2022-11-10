@@ -12,7 +12,7 @@ import com.prilepskiy.criptomanagerapp.databinding.ItemCoinInfoFavoriteBinding
 import com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel
 import com.prilepskiy.criptomanagerapp.ui.base.BaseViewHolder
 
-class CoinAdapter: ListAdapter<CoinInfoModel,BaseViewHolder<CoinInfoModel,ViewBinding>>(CoinItemDiffCallback()) {
+class CoinAdapter(private val onCoinClicked: (coin:CoinInfoModel)-> Unit,private val onFavoriteClicked: ()-> Unit): ListAdapter<CoinInfoModel,BaseViewHolder<CoinInfoModel,ViewBinding>>(CoinItemDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<CoinInfoModel,ViewBinding> {
         val binding = when(viewType){
             COIN -> {
@@ -58,12 +58,28 @@ class CoinAdapter: ListAdapter<CoinInfoModel,BaseViewHolder<CoinInfoModel,ViewBi
                         tvPrice.text = String.format(priceTemplate, item.price)
                         tvLastUpdate.text = String.format(lastUpdateTemplate, item.lastUpdate)
 
+                        buttomFavorite.setOnClickListener {
+                            onFavoriteClicked()
+                        }
+
 
                     }
                     is ItemCoinInfoFavoriteBinding->{
-                        tvSymbols.text = item.name
-                        tvPrice.text = item.fullName
-                        tvLastUpdate.text=item.rating
+                        Glide.with(context)
+                            .load(BASE_IMAGE_URL+item.imageUrl)
+                            .placeholder(R.drawable.ic_dashboard_black_24dp)
+                            .into(ivLogoCoin)
+
+                        val symbolsTemplate = context.resources.getString(R.string.symbols_template)
+                        val lastUpdateTemplate = context.resources.getString(R.string.last_update_template)
+                        val priceTemplate = context.resources.getString(R.string.price_label)
+
+                        tvSymbols.text = String.format(symbolsTemplate, item.fromSymbol, item.toSymbol)
+                        tvPrice.text = String.format(priceTemplate, item.price)
+                        tvLastUpdate.text = String.format(lastUpdateTemplate, item.lastUpdate)
+                        buttomFavorite.setOnClickListener {
+                            onFavoriteClicked()
+                        }
 
                     }
                 }
@@ -86,7 +102,7 @@ class CoinAdapter: ListAdapter<CoinInfoModel,BaseViewHolder<CoinInfoModel,ViewBi
             getItem(position)?.let { item ->
                 bind(item, itemView.context)
                 itemView.setOnClickListener {
-
+                    onCoinClicked(item)
                 }
             }
         }

@@ -1,11 +1,13 @@
 package com.prilepskiy.criptomanagerapp.domain.model.coin
 
+import android.os.Parcelable
 import com.prilepskiy.criptomanagerapp.data.response.criptoResponse.DataResponse
+import kotlinx.parcelize.Parcelize
 import java.sql.Date
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
-
+@Parcelize
 data class CoinInfoModel(
 
     val algorithm: String,
@@ -33,7 +35,7 @@ data class CoinInfoModel(
     val lastUpdate:String,
     val favorite:Boolean,
 
-) {
+): Parcelable {
 
     companion object {
 
