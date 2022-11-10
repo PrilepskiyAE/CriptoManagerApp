@@ -4,5 +4,4 @@ data class CoinResponse(
     val Data: List<DataResponse>,
     val HasWarning: Boolean,
     val Message: String,
-
     )
