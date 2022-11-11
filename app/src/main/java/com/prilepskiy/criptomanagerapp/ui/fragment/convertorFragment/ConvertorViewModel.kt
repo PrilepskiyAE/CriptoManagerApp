@@ -6,6 +6,7 @@ import com.prilepskiy.criptomanagerapp.core.ActionResult
 import com.prilepskiy.criptomanagerapp.data.response.convertorResponse.valuteResponse
 import com.prilepskiy.criptomanagerapp.domain.interactors.GetValuteListUseCase
 import com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel
+import com.prilepskiy.criptomanagerapp.domain.model.valute.ValuteModel
 import com.prilepskiy.criptomanagerapp.ui.base.BaseViewModel
 import com.prilepskiy.criptomanagerapp.ui.dialog.ValuteDialog
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,14 +14,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class ConvertorViewModel(private val getValuteListUseCase: GetValuteListUseCase):BaseViewModel() {
-    private val _valuteList: MutableStateFlow<valuteResponse?> by lazy {
+    private val _valuteList: MutableStateFlow<List<ValuteModel>?> by lazy {
         MutableStateFlow(
             null
         )
     }
     val valuteList=_valuteList.asStateFlow()
-
-
     fun getValuteList() {
         viewModelScope.launch {
             when (val result = getValuteListUseCase.invoke()){
@@ -34,6 +33,7 @@ class ConvertorViewModel(private val getValuteListUseCase: GetValuteListUseCase)
             }
         }
     }
+
     companion object{
         const val TAG = "ConvertorViewModel"
     }

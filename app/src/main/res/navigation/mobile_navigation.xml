@@ -8,7 +8,16 @@
         android:id="@+id/navigation_home"
         android:name="com.prilepskiy.criptomanagerapp.ui.fragment.homeFragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_criptoInfoFragment"
+            app:destination="@id/criptoInfoFragment">
+        <argument
+            android:name="cripto"
+            app:argType="com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel"
+            />
+        </action>
+    </fragment>
     <fragment
         android:id="@+id/navigation_convertor"
         android:name="com.prilepskiy.criptomanagerapp.ui.fragment.convertorFragment.ConvertorFragment"

@@ -21,7 +21,7 @@ class CriptoViewModel(private val getCoinUseCase: GetCoinUseCase):BaseViewModel(
 
     fun getCoinList() {
         viewModelScope.launch {
-            when (val result = getCoinUseCase.invoke()){
+            when (val result = getCoinUseCase.invoke(40)){
                 is ActionResult.Success -> {
                     Log.d(TAG, "getCoinList()->Success: ${result.data}")
                     _coinList.emit(result.data)
