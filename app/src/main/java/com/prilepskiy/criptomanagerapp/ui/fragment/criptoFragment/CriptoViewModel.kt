@@ -23,11 +23,11 @@ class CriptoViewModel(private val getCoinUseCase: GetCoinUseCase):BaseViewModel(
         viewModelScope.launch {
             when (val result = getCoinUseCase.invoke()){
                 is ActionResult.Success -> {
-                    Log.d(TAG, "getMerchantsList->Success: ${result.data}")
+                    Log.d(TAG, "getCoinList()->Success: ${result.data}")
                     _coinList.emit(result.data)
                 }
                 is ActionResult.Error ->{
-                    Log.d(TAG, "getMerchantsList->Error: ${result.errors}")
+                    Log.d(TAG, "getCoinList()->Error: ${result.errors}")
                 }
             }
         }

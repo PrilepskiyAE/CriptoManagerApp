@@ -24,7 +24,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField "String", "API_URL", '"https://min-api.cryptocompare.com/data/"'
+            buildConfigField "String", "API_URL_CRIPTO", '"https://min-api.cryptocompare.com/data/"'
+            buildConfigField "String", "API_URL_VALUTE", '"https://www.cbr-xml-daily.ru/"'
 
         }
     }
