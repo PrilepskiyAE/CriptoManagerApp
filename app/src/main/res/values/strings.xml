@@ -9,14 +9,14 @@
     <string name="title_convertor">convertor</string>
 
     <string name="symbols_template">%s / %s</string>
-    <string name="last_update_template">Время последнего обновления: %s</string>
+    <string name="last_update_template">Время последнего обновления:%s</string>
 
     <string name="slash">/</string>
-    <string name="price_label">Цена: %s $</string>
-    <string name="min_price_label"> Минимум за день: %s $</string>
-    <string name="max_price_label"> Максимум за день: %s $</string>
+    <string name="price_label">Цена: %s$</string>
+    <string name="min_price_label"> Минимум за день:%s$</string>
+    <string name="max_price_label"> Максимум за день:%s$</string>
     <string name="last_market_label">Последняя сделка:</string>
-    <string name="algorithm_label">Алгоритм: %s</string>
+    <string name="algorithm_label">Алгоритм:%s</string>
 
     <string name="last_updated_label">Обновлено:</string>
 
