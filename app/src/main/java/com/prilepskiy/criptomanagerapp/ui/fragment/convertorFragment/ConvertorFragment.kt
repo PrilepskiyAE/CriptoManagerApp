@@ -44,4 +44,8 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
         }
     }
 
+    override fun onView() {
+        viewModel.getValuteList()
+    }
+
 }

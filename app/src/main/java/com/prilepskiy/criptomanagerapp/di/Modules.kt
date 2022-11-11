@@ -10,6 +10,6 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel {HomeViewModel()}
     viewModel {CriptoViewModel(get())}
-    viewModel {ConvertorViewModel()}
+    viewModel {ConvertorViewModel(get())}
     viewModel {ProfileViewModel()}
 }
