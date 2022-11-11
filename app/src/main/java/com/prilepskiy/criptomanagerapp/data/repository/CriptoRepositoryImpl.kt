@@ -8,7 +8,7 @@ import com.prilepskiy.criptomanagerapp.data.utils.makeApiCall
 import com.prilepskiy.criptomanagerapp.domain.repository.CriptoRepository
 
 class CriptoRepositoryImpl(private val criptoApiService: CriptoApiService): CriptoRepository {
-    override suspend fun getTopCoin(): ActionResult<CoinResponse> = makeApiCall {
-        analyzeResponse(criptoApiService.getTopCoinsInfo())
+    override suspend fun getTopCoin(value:Int): ActionResult<CoinResponse> = makeApiCall {
+        analyzeResponse(criptoApiService.getTopCoinsInfo(limit = value))
     }
 }

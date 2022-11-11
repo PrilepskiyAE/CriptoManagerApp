@@ -4,5 +4,5 @@ import com.prilepskiy.criptomanagerapp.core.ActionResult
 import com.prilepskiy.criptomanagerapp.data.response.criptoResponse.CoinResponse
 
 interface CriptoRepository {
-    suspend fun getTopCoin():ActionResult<CoinResponse>
+    suspend fun getTopCoin(value:Int):ActionResult<CoinResponse>
 }

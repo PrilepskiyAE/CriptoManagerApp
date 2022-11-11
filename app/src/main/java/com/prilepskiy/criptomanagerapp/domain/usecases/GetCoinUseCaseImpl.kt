@@ -8,10 +8,10 @@ import com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel
 import com.prilepskiy.criptomanagerapp.domain.repository.CriptoRepository
 
 class GetCoinUseCaseImpl(private val criptoRepository: CriptoRepository):GetCoinUseCase {
-    override suspend fun invoke(): ActionResult<List<CoinInfoModel>> {
+    override suspend fun invoke(value:Int): ActionResult<List<CoinInfoModel>> {
         val result:MutableList<CoinInfoModel> = mutableListOf()
         Log.d("tag", "invoke: ")
-        return  when(val apiData=criptoRepository.getTopCoin()){
+        return  when(val apiData=criptoRepository.getTopCoin(value)){
             is ActionResult.Success -> {
 
                 apiData.data.Data.onEach {
