@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.prilepskiy.criptomanagerapp.R
 import com.prilepskiy.criptomanagerapp.databinding.FragmentHomeBinding
 import com.prilepskiy.criptomanagerapp.ui.adapter.coinadapter.CoinAdapter
+import com.prilepskiy.criptomanagerapp.ui.adapter.valuteadapter.ValuteAdapterList
 import com.prilepskiy.criptomanagerapp.ui.base.FragmentBaseNCMVVM
 import com.prilepskiy.criptomanagerapp.ui.base.viewBinding
 import com.prilepskiy.criptomanagerapp.ui.fragment.criptoFragment.CriptoFragmentDirections
@@ -25,9 +26,9 @@ class HomeFragment : FragmentBaseNCMVVM<HomeViewModel, FragmentHomeBinding>() {
         },{
             Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
         })
-
+        val valuteListAdapter:ValuteAdapterList=ValuteAdapterList {}
         binding.listCoin.adapter=listAdapter
-
+        binding.listValute.adapter=valuteListAdapter
         onEach(viewModel.coinList){
             binding.progressBar.visibility=View.VISIBLE
             listAdapter.submitList(it)
@@ -38,8 +39,10 @@ class HomeFragment : FragmentBaseNCMVVM<HomeViewModel, FragmentHomeBinding>() {
         }
         onEach(viewModel.valuteList){
             binding.progressBar2.visibility=View.VISIBLE
+            valuteListAdapter.submitList(it)
             if (it != null) {
                 if (it.isNotEmpty())
+                    Log.d(TAG, "onEach: ")
                     binding.progressBar2.visibility=View.GONE
             }
         }
