@@ -25,9 +25,6 @@ class CoinAdapter(private val onCoinClicked: (coin:CoinInfoModel)-> Unit,private
         }
         return CoinViewHolder(binding)
     }
-
-
-
     override fun getItemViewType(position: Int): Int {
         val item = getItem(position)
         return if (item.favorite){
