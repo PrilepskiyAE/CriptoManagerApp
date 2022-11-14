@@ -14,18 +14,16 @@
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_convertor.xml" value="0.18" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_cripto.xml" value="0.23772609819121446" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_cripto_info.xml" value="0.25" />
-        <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_home.xml" value="0.21449792038027332" />
+        <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_profile.xml" value="0.358695652173913" />
+        <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_valute.xml" value="0.2513586956521739" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/item_coin_info.xml" value="0.33" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/item_coin_info_favorite.xml" value="0.18802083333333333" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/item_valute.xml" value="0.5" />
-        <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/item_valute_info.xml" value="0.33" />
+        <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/item_valute_info.xml" value="0.2513586956521739" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/toolbar_standard.xml" value="0.18802083333333333" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/valute_dialog.xml" value="0.18802083333333333" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18802083333333333" />
-        <entry key="..\:/prodject/CriptoManagerApp/app/src/main/res/layout/fragment_home.xml" value="0.1234375" />
-        <entry key="..\:/prodject/CriptoManagerApp/app/src/main/res/layout/item_valute.xml" value="0.1234375" />
-        <entry key="..\:/prodject/CriptoManagerApp/app/src/main/res/layout/item_valute_active.xml" value="0.12239583333333333" />
       </map>
     </option>
   </component>

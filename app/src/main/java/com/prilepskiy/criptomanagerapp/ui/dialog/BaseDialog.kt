@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
+import com.prilepskiy.criptomanagerapp.ui.base.observeInLifecycle
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onEach
 
 abstract class BaseDialog<ViewBind : ViewBinding> :
     DialogFragment() {
@@ -35,4 +38,8 @@ abstract class BaseDialog<ViewBind : ViewBinding> :
     protected open fun onViewClick() {}
 
     protected open fun onEach() {}
+    protected inline fun <reified T> onEach(flow: Flow<T>, crossinline action: (T) -> Unit) = view?.run {
+        if (!this@BaseDialog.isAdded) return@run
+        flow.onEach { action(it ?: return@onEach) }.observeInLifecycle(viewLifecycleOwner)
+    }
 }

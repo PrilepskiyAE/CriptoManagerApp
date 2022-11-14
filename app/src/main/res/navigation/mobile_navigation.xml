@@ -8,15 +8,23 @@
         android:id="@+id/navigation_home"
         android:name="com.prilepskiy.criptomanagerapp.ui.fragment.homeFragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_criptoInfoFragment"
             app:destination="@id/criptoInfoFragment">
-        <argument
-            android:name="cripto"
-            app:argType="com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel"
-            />
+            <argument
+                android:name="cripto"
+                app:argType="com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel" />
         </action>
+
+        <action
+            android:id="@+id/action_navigation_home_to_valuteFragment"
+            app:destination="@id/valuteFragment">
+            <argument
+                android:name="valute"
+                app:argType="com.prilepskiy.criptomanagerapp.domain.model.valute.ValuteModel" />
+        </action>
+
     </fragment>
     <fragment
         android:id="@+id/navigation_convertor"
@@ -27,14 +35,13 @@
         android:id="@+id/navigation_cripto"
         android:name="com.prilepskiy.criptomanagerapp.ui.fragment.criptoFragment.CriptoFragment"
         android:label="fragment_cripto"
-        tools:layout="@layout/fragment_cripto" >
+        tools:layout="@layout/fragment_cripto">
         <action
             android:id="@+id/action_navigation_cripto_to_criptoInfoFragment"
-            app:destination="@id/criptoInfoFragment" >
+            app:destination="@id/criptoInfoFragment">
             <argument
                 android:name="cripto"
-                app:argType="com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel"
-                />
+                app:argType="com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel" />
         </action>
     </fragment>
 
@@ -48,8 +55,17 @@
         android:name="com.prilepskiy.criptomanagerapp.ui.fragment.criptoInfoFragment.CriptoInfoFragment"
         android:label="fragment_cripto_info"
         tools:layout="@layout/fragment_cripto_info">
-    <argument
-        android:name="cripto"
-        app:argType="com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel"/>
+        <argument
+            android:name="cripto"
+            app:argType="com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/valuteFragment"
+        android:name="com.prilepskiy.criptomanagerapp.ui.fragment.valuteFragment.ValuteFragment"
+        android:label="fragment_valute"
+        tools:layout="@layout/fragment_valute">
+        <argument
+            android:name="valute"
+            app:argType="com.prilepskiy.criptomanagerapp.domain.model.valute.ValuteModel" />
     </fragment>
 </navigation>
