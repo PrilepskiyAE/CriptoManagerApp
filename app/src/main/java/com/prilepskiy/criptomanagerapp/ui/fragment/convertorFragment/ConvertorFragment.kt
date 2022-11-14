@@ -1,6 +1,7 @@
 package com.prilepskiy.criptomanagerapp.ui.fragment.convertorFragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.prilepskiy.criptomanagerapp.databinding.FragmentHomeBinding
 import com.prilepskiy.criptomanagerapp.ui.base.FragmentBaseNCMVVM
 import com.prilepskiy.criptomanagerapp.ui.base.viewBinding
 import com.prilepskiy.criptomanagerapp.ui.dialog.ValuteDialog
+import com.prilepskiy.criptomanagerapp.ui.fragment.homeFragment.HomeFragment
 import com.prilepskiy.criptomanagerapp.ui.fragment.homeFragment.HomeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -18,6 +20,17 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
     override val binding: FragmentConvertorBinding by viewBinding()
     override val viewModel: ConvertorViewModel by viewModel()
     private var valuteDialog: ValuteDialog? = null
+
+    override fun onEach() {
+        viewModel.getValuteList()
+        onEach(viewModel.valuteList){
+            if (it != null) {
+                if (it.isNotEmpty())
+                    Log.d(HomeFragment.TAG, "onEach: ")
+                binding.progressBar.visibility=View.GONE
+            }
+        }
+    }
     override fun onViewClick() {
         binding.tvUpdateLeft.setOnClickListener {
             showValuteDialog()

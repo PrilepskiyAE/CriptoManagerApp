@@ -26,7 +26,9 @@ class HomeFragment : FragmentBaseNCMVVM<HomeViewModel, FragmentHomeBinding>() {
         },{
             Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
         })
-        val valuteListAdapter:ValuteAdapterList=ValuteAdapterList {}
+        val valuteListAdapter:ValuteAdapterList=ValuteAdapterList {
+            navigateFragment(HomeFragmentDirections.actionNavigationHomeToValuteFragment(it))
+        }
         binding.listCoin.adapter=listAdapter
         binding.listValute.adapter=valuteListAdapter
         onEach(viewModel.coinList){

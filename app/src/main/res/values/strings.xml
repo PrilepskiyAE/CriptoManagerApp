@@ -19,5 +19,11 @@
     <string name="algorithm_label">Алгоритм:%s</string>
 
     <string name="last_updated_label">Обновлено:</string>
+    <string name="value_string">Value: %s</string>
+    <string name="previous_string">Previous: %s</string>
+    <string name="numcode_sring">NumCode: %s</string>
+    <string name="nominal_string">Nominal: %s</string>
+    <string name="name_string">Name: %s</string>
+    <string name="charcode_string">CharCode: %s</string>
 
 </resources>

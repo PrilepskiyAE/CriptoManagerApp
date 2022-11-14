@@ -1,7 +1,10 @@
 package com.prilepskiy.criptomanagerapp.domain.model.valute
 
+import android.os.Parcelable
 import com.prilepskiy.criptomanagerapp.data.response.convertorResponse.valuteResponse
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ValuteModel(
     val CharCode: String,
     val ID: String,
@@ -11,7 +14,7 @@ data class ValuteModel(
     val Previous: Double,
     val Value: Double,
     val activate:Boolean
-){
+): Parcelable {
     companion object{
         fun fromList(data: valuteResponse):List<ValuteModel>
         {
