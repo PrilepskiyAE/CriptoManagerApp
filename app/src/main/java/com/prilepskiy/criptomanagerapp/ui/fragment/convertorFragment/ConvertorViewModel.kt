@@ -33,6 +33,22 @@ class ConvertorViewModel(private val getValuteListUseCase: GetValuteListUseCase)
             }
         }
     }
+    fun updateList(valute: ValuteModel){
+        viewModelScope.launch {
+
+            var stationItems = _valuteList.value?: listOf()
+            var updatedItem = stationItems.find { it.ID == valute.ID }
+            val index = stationItems.indexOf(updatedItem)
+            updatedItem = updatedItem?.copy(activate = true)
+            stationItems = stationItems.toMutableList().apply {
+                if (updatedItem != null) {
+                    this[index] = updatedItem
+                }
+                _valuteList.emit(stationItems)
+            }
+            Log.d(TAG, "updateList: ${_valuteList.value}")
+        }
+    }
 
     companion object{
         const val TAG = "ConvertorViewModel"

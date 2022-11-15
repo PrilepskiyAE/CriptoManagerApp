@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.prilepskiy.criptomanagerapp.R
 import com.prilepskiy.criptomanagerapp.databinding.FragmentConvertorBinding
 import com.prilepskiy.criptomanagerapp.databinding.FragmentHomeBinding
+import com.prilepskiy.criptomanagerapp.domain.model.valute.ValuteModel
 import com.prilepskiy.criptomanagerapp.ui.base.FragmentBaseNCMVVM
 import com.prilepskiy.criptomanagerapp.ui.base.viewBinding
 import com.prilepskiy.criptomanagerapp.ui.dialog.ValuteDialog
@@ -20,7 +21,8 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
     override val binding: FragmentConvertorBinding by viewBinding()
     override val viewModel: ConvertorViewModel by viewModel()
     private var valuteDialog: ValuteDialog? = null
-
+    private var valuteRight:ValuteModel?=null
+    private var valuteLeft:ValuteModel?=null
     override fun onEach() {
         viewModel.getValuteList()
         onEach(viewModel.valuteList){
@@ -33,16 +35,26 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
     }
     override fun onViewClick() {
         binding.tvUpdateLeft.setOnClickListener {
-            showValuteDialog()
+            showValuteDialog(true)
         }
         binding.tvUpdateRight.setOnClickListener {
-            showValuteDialog()
+            showValuteDialog(false)
         }
     }
 
-    fun showValuteDialog(){
+    fun showValuteDialog(mod:Boolean){
         if (valuteDialog == null)
-            valuteDialog= ValuteDialog()
+            valuteDialog= ValuteDialog ({
+                if (mod) {
+                    valuteLeft = it
+                    valuteRight = null
+                    binding.tvValute1.text=valuteLeft?.CharCode
+                } else {
+                    valuteRight = it
+                    valuteLeft = null
+                    binding.tvValute2.text=valuteRight?.CharCode
+                }
+            },valuteLeft,valuteRight)
         valuteDialog?.onDismissAction = {
             valuteDialog =null
         }
@@ -59,6 +71,12 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
 
     override fun onView() {
         viewModel.getValuteList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("TAG", "onResume: right -> $valuteRight left ->$valuteLeft")
+
     }
 
 }
