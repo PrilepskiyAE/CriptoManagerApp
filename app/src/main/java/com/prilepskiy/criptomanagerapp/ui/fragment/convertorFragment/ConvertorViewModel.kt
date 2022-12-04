@@ -9,6 +9,8 @@ import com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel
 import com.prilepskiy.criptomanagerapp.domain.model.valute.ValuteModel
 import com.prilepskiy.criptomanagerapp.ui.base.BaseViewModel
 import com.prilepskiy.criptomanagerapp.ui.dialog.ValuteDialog
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -20,11 +22,69 @@ class ConvertorViewModel(private val getValuteListUseCase: GetValuteListUseCase)
         )
     }
     val valuteList=_valuteList.asStateFlow()
+
+    private var _valuteRight:MutableStateFlow<ValuteModel> = MutableStateFlow(
+        ValuteModel(
+            "RU",
+            "R1111111",
+            "российский рубль",
+            1,
+            "099",
+            1.00,
+            1.00,
+            activate = false)
+    )
+    val valuteRight=_valuteRight.asStateFlow()
+
+    private var _valuteLeft:MutableStateFlow<ValuteModel> =MutableStateFlow(ValuteModel(
+        "RU",
+        "R1111111",
+        "российский рубль",
+        1,
+        "099",
+        1.00,
+        1.00,
+        activate = false))
+    val valuteLeft=_valuteLeft.asStateFlow()
+
+    private var _valuteStringLeft:MutableStateFlow<String> = MutableStateFlow("")
+    val valuteStringLeft=_valuteStringLeft.asStateFlow()
+
+   private var _valuteStringRight:MutableStateFlow<String> = MutableStateFlow("")
+    val valuteStringRight=_valuteStringRight.asStateFlow()
+
+
+ fun getStringRight(valute: String){
+     try {
+
+
+       CoroutineScope(Dispatchers.IO).launch {
+           if (!valute.isNullOrEmpty())
+           _valuteStringRight.emit(valute)
+       }
+     }catch (e:Exception){
+
+     }
+   }
+    fun getStringLeft(valute: String){
+       try {
+           CoroutineScope(Dispatchers.IO).launch {
+               if (!valute.isNullOrEmpty())
+                   _valuteStringLeft.emit(valute)
+           }
+       }catch (e:Exception){
+
+       }
+
+
+    }
+
+
     fun getValuteList() {
         viewModelScope.launch {
             when (val result = getValuteListUseCase.invoke()){
                 is ActionResult.Success -> {
-                    Log.d(TAG, "getValuteList()->Success: ${result.data}")
+
                     _valuteList.emit(result.data)
                 }
                 is ActionResult.Error ->{
@@ -33,22 +93,20 @@ class ConvertorViewModel(private val getValuteListUseCase: GetValuteListUseCase)
             }
         }
     }
-    fun updateList(valute: ValuteModel){
-        viewModelScope.launch {
 
-            var stationItems = _valuteList.value?: listOf()
-            var updatedItem = stationItems.find { it.ID == valute.ID }
-            val index = stationItems.indexOf(updatedItem)
-            updatedItem = updatedItem?.copy(activate = true)
-            stationItems = stationItems.toMutableList().apply {
-                if (updatedItem != null) {
-                    this[index] = updatedItem
-                }
-                _valuteList.emit(stationItems)
-            }
-            Log.d(TAG, "updateList: ${_valuteList.value}")
+    fun updateRight(valute:ValuteModel){
+        viewModelScope.launch {
+            _valuteRight.emit(valute)
         }
     }
+    fun updateLeft(valute:ValuteModel){
+        viewModelScope.launch {
+            _valuteLeft.emit(valute)
+        }
+    }
+
+
+
 
     companion object{
         const val TAG = "ConvertorViewModel"

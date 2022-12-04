@@ -14,8 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ValuteDialog(
     private val click: (ValuteModel) -> Unit,
-    private val valuteLeft:ValuteModel?,
-    private val valuteRight:ValuteModel?
+    valute :ValuteModel?,
     ): BaseDialog<ValuteDialogBinding>() {
     override val dialogStyle: Int
         get() = R.style.AppTheme_FullScreenDialog
@@ -23,18 +22,15 @@ class ValuteDialog(
     val viewModel: ConvertorViewModel by viewModel()
     var onDismissAction: () -> Unit = {}
     var onCancelAction: () -> Unit = {}
-    val valuteListAdapter: ValuteAdapterList = ValuteAdapterList {
+    val valuteListAdapter: ValuteAdapterList = ValuteAdapterList( {
         click(it)
-        viewModel.updateList(it)
         dismiss()
 
-    }
+    },valute)
 
     override fun onEach() {
         binding.rcValute.adapter=valuteListAdapter
         onEach(viewModel.valuteList){
-            Log.d("TAG", "valuteLeft: $valuteLeft")
-            Log.d("TAG", "valuteRight: $valuteRight")
             valuteListAdapter.submitList(it)
         }
     }
