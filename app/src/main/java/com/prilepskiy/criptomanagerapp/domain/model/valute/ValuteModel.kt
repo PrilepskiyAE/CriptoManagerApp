@@ -329,6 +329,15 @@ data class ValuteModel(
                     data.Valute.ZAR.NumCode,
                     data.Valute.ZAR.Previous,
                     data.Valute.ZAR.Value,
+                    activate = false),
+                ValuteModel(
+                    "RU",
+                    "R1111111",
+                   "российский рубль",
+                    1,
+                    "099",
+                    1.00,
+                    1.00,
                     activate = false)
 
 

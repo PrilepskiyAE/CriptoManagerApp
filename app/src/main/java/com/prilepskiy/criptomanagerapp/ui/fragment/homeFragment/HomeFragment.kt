@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.prilepskiy.criptomanagerapp.R
 import com.prilepskiy.criptomanagerapp.databinding.FragmentHomeBinding
+import com.prilepskiy.criptomanagerapp.domain.model.valute.ValuteModel
 import com.prilepskiy.criptomanagerapp.ui.adapter.coinadapter.CoinAdapter
 import com.prilepskiy.criptomanagerapp.ui.adapter.valuteadapter.ValuteAdapterList
 import com.prilepskiy.criptomanagerapp.ui.base.FragmentBaseNCMVVM
@@ -26,9 +27,18 @@ class HomeFragment : FragmentBaseNCMVVM<HomeViewModel, FragmentHomeBinding>() {
         },{
             Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
         })
-        val valuteListAdapter:ValuteAdapterList=ValuteAdapterList {
+        val valuteListAdapter:ValuteAdapterList=ValuteAdapterList ({
             navigateFragment(HomeFragmentDirections.actionNavigationHomeToValuteFragment(it))
-        }
+        }, ValuteModel(
+            "RU",
+            "R1111111",
+            "российский рубль",
+            1,
+            "099",
+            1.00,
+            1.00,
+            activate = false)
+        )
         binding.listCoin.adapter=listAdapter
         binding.listValute.adapter=valuteListAdapter
         onEach(viewModel.coinList){
