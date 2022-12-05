@@ -53,7 +53,6 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
 
 
                 }catch (e:NumberFormatException){
-clear()
                 }
 
             }
@@ -77,7 +76,6 @@ clear()
 
                 }
                 catch (e:NumberFormatException){
-clear()
                 }
 
         }
