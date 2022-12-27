@@ -8,6 +8,7 @@ data class UserEntity(
     @PrimaryKey(autoGenerate = true)
     val id:Long,
     val username:String,
+    val email:String,
     val password:String,
     val favoriteCoinId:String?
 )
