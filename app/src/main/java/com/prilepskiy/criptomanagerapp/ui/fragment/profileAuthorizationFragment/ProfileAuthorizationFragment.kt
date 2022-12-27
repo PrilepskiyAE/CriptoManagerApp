@@ -24,4 +24,14 @@ class ProfileAuthorizationFragment : FragmentBaseNCMVVM<ProfileAuthorizationView
             navigateFragment(R.id.navigation_home)
         }
     }
+    override fun onEach() {
+        onEach(viewModel.navigateLogin){
+            if (it == false){
+                navigateFragment(ProfileAuthorizationFragmentDirections.actionProfileAuthorizationFragmentToProfileLoginFragment())
+            }
+        }
+    }
+    override fun onView() {
+        viewModel.isAutorization()
+    }
 }

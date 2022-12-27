@@ -14,6 +14,6 @@ val viewModelModule = module {
     viewModel {CriptoViewModel(get())}
     viewModel {ConvertorViewModel(get())}
     viewModel {ProfileViewModel(get())}
-    viewModel {ProfileAuthorizationViewModel(get())}
+    viewModel {ProfileAuthorizationViewModel(get(),get())}
     viewModel {ProfileLoginViewModel(get())}
 }
