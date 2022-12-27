@@ -1,10 +1,7 @@
 package com.prilepskiy.criptomanagerapp
 
 import android.app.Application
-import com.prilepskiy.criptomanagerapp.di.apiModule
-import com.prilepskiy.criptomanagerapp.di.repositoryModule
-import com.prilepskiy.criptomanagerapp.di.useCaseModule
-import com.prilepskiy.criptomanagerapp.di.viewModelModule
+import com.prilepskiy.criptomanagerapp.di.*
 import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -28,6 +25,7 @@ class App : Application() {
         repositoryModule,
         useCaseModule,
         viewModelModule,
+        databaseModule,
         apiModule
         )
 

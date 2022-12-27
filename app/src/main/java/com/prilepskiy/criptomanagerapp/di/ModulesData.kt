@@ -1,15 +1,19 @@
 package com.prilepskiy.criptomanagerapp.di
 
+import android.app.Application
+import androidx.room.Room
 import com.prilepskiy.criptomanagerapp.BuildConfig
 import com.prilepskiy.criptomanagerapp.data.dataservice.ConvertorApiService
 import com.prilepskiy.criptomanagerapp.data.dataservice.CriptoApiService
 import com.prilepskiy.criptomanagerapp.data.repository.ConverterRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.repository.CriptoRepositoryImpl
+import com.prilepskiy.criptomanagerapp.data.room.user.UserDataBase
 import com.prilepskiy.criptomanagerapp.data.utils.HeaderInterceptor
 import com.prilepskiy.criptomanagerapp.domain.repository.ConverterRepository
 import com.prilepskiy.criptomanagerapp.domain.repository.CriptoRepository
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -43,4 +47,16 @@ val apiModule = module {
 val repositoryModule = module {
     single<CriptoRepository> { CriptoRepositoryImpl(get()) }
     single<ConverterRepository> { ConverterRepositoryImpl(get()) }
+}
+val databaseModule = module {
+    fun provideUserDb(application: Application): UserDataBase {
+        return Room.databaseBuilder(
+            application,
+            UserDataBase::class.java,
+            "UserDB"
+        ).allowMainThreadQueries()
+            .build()
+    }
+    single {provideUserDb(androidApplication())}
+    single { get<UserDataBase>().userDao }
 }
