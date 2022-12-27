@@ -43,7 +43,7 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
 
 
                     val ed = viewModel.valuteLeft.value.Value / viewModel.valuteLeft.value.Nominal
-                    val v = (ed * it.toDouble()) / viewModel.valuteRight.value.Value
+                    val v = (ed * it.toDouble()) / viewModel.valuteRight.value.Value*viewModel.valuteRight.value.Nominal
                     if (!v.toString().isNullOrEmpty())
                         binding.editTextNumberDecimal2.setText(String.format("%.5f", v))
                     if (!it.isNullOrEmpty())
@@ -66,7 +66,7 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
             } else {
                 try {
                 val ed=viewModel.valuteRight.value.Value/viewModel.valuteRight.value.Nominal
-                val v=(ed*it.toDouble())/viewModel.valuteLeft.value.Value
+                val v=(ed*it.toDouble())/viewModel.valuteLeft.value.Value*viewModel.valuteLeft.value.Nominal
                 if (!v.toString().isNullOrEmpty())
                 binding.editTextNumberDecimal.setText(String.format("%.5f", v))
                     if (!it.isNullOrEmpty())
