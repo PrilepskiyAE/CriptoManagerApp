@@ -16,5 +16,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class ProfileLoginFragment : FragmentBaseNCMVVM<ProfileLoginViewModel, FragmentProfileLoginBinding>() {
     override val binding: FragmentProfileLoginBinding by viewBinding()
     override val viewModel:ProfileLoginViewModel by viewModel()
+    override fun onViewClick() {
+        binding.btLogin.setOnClickListener {
+            viewModel.login("test")
+            navigateFragment(ProfileLoginFragmentDirections.actionProfileLoginFragmentToProfileAuthorizationFragment())
+        }
+    }
 
 }

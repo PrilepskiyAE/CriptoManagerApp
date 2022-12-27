@@ -13,7 +13,7 @@ val viewModelModule = module {
     viewModel {HomeViewModel(get(),get())}
     viewModel {CriptoViewModel(get())}
     viewModel {ConvertorViewModel(get())}
-    viewModel {ProfileViewModel()}
-    viewModel {ProfileAuthorizationViewModel()}
-    viewModel {ProfileLoginViewModel()}
+    viewModel {ProfileViewModel(get())}
+    viewModel {ProfileAuthorizationViewModel(get())}
+    viewModel {ProfileLoginViewModel(get())}
 }

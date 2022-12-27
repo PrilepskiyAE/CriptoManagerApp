@@ -34,5 +34,6 @@
     <string name="logout_btn">Logout</string>
     <string name="tv_welcome">Welcome,</string>
     <string name="functionality_in_development">Functionality in development</string>
+    <string name="profile">profile</string>
 
 </resources>

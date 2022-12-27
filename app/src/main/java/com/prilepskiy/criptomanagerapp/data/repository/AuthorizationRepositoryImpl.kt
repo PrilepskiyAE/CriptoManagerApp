@@ -4,7 +4,7 @@ import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceSer
 import com.prilepskiy.criptomanagerapp.domain.repository.AuthorizationRepository
 
 class AuthorizationRepositoryImpl(private val preferenceService: PreferenceService):AuthorizationRepository {
-    override fun getUser(): String {
+    override fun getUser(): String? {
         return preferenceService.getToken()
     }
 

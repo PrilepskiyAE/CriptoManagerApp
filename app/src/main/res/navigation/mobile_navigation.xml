@@ -88,5 +88,9 @@
         android:id="@+id/profileAuthorizationFragment"
         android:name="com.prilepskiy.criptomanagerapp.ui.fragment.profileAuthorizationFragment.ProfileAuthorizationFragment"
         android:label="fragment_profile_authorization"
-        tools:layout="@layout/fragment_profile_authorization" />
+        tools:layout="@layout/fragment_profile_authorization" >
+        <action
+            android:id="@+id/action_profileAuthorizationFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

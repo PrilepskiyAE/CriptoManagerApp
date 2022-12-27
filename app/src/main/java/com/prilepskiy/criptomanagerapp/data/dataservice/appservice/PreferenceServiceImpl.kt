@@ -7,10 +7,10 @@ import com.squareup.moshi.Moshi
 
 class PreferenceServiceImpl(private val context: Context) : PreferenceService{
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("STORAGE_TOKEN", Context.MODE_PRIVATE)
+        context.getSharedPreferences(STORAGE_TOKEN, Context.MODE_PRIVATE)
 
 
-    override fun getToken(): String =sharedPreferences.get(AUTH_TOKEN,"")
+    override fun getToken()=sharedPreferences.get(AUTH_TOKEN,"")
     override fun setToken(token: String) {
         sharedPreferences.set(AUTH_TOKEN,token)
     }
