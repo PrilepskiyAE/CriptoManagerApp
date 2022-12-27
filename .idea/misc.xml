@@ -6,6 +6,7 @@
         <entry key="..\:/CriptoManagerApp/app/src/main/res/drawable/buttom_selector.xml" value="0.239" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/drawable/corner_radius_20_backgroud.xml" value="0.1" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/drawable/corner_radius_20_background_btn_disabled.xml" value="0.1" />
+        <entry key="..\:/CriptoManagerApp/app/src/main/res/drawable/corner_radius_edit_text.xml" value="0.1" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/drawable/ic_baseline_height_24.xml" value="0.1" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/drawable/ic_union.xml" value="0.1" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/drawable/ic_union1.xml" value="0.1" />
@@ -16,6 +17,8 @@
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_cripto_info.xml" value="0.25" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_profile.xml" value="0.358695652173913" />
+        <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_profile_authorization.xml" value="0.37604166666666666" />
+        <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_profile_login.xml" value="0.25" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/fragment_valute.xml" value="0.2513586956521739" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/item_coin_info.xml" value="0.33" />
         <entry key="..\:/CriptoManagerApp/app/src/main/res/layout/item_coin_info_favorite.xml" value="0.18802083333333333" />

@@ -49,7 +49,14 @@
         android:id="@+id/navigation_profile"
         android:name="com.prilepskiy.criptomanagerapp.ui.fragment.profileFragment.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_profileLoginFragment"
+            app:destination="@id/profileLoginFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_profileAuthorizationFragment"
+            app:destination="@id/profileAuthorizationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/criptoInfoFragment"
         android:name="com.prilepskiy.criptomanagerapp.ui.fragment.criptoInfoFragment.CriptoInfoFragment"
@@ -68,4 +75,18 @@
             android:name="valute"
             app:argType="com.prilepskiy.criptomanagerapp.domain.model.valute.ValuteModel" />
     </fragment>
+    <fragment
+        android:id="@+id/profileLoginFragment"
+        android:name="com.prilepskiy.criptomanagerapp.ui.fragment.profileLoginFragment.ProfileLoginFragment"
+        android:label="fragment_profile_login"
+        tools:layout="@layout/fragment_profile_login" >
+        <action
+            android:id="@+id/action_profileLoginFragment_to_profileAuthorizationFragment"
+            app:destination="@id/profileAuthorizationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileAuthorizationFragment"
+        android:name="com.prilepskiy.criptomanagerapp.ui.fragment.profileAuthorizationFragment.ProfileAuthorizationFragment"
+        android:label="fragment_profile_authorization"
+        tools:layout="@layout/fragment_profile_authorization" />
 </navigation>
