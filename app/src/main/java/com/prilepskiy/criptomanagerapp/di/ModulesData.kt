@@ -10,10 +10,12 @@ import com.prilepskiy.criptomanagerapp.data.dataservice.apiservice.CriptoApiServ
 import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceService
 import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceServiceImpl
 import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceServiceImpl.Companion.STORAGE_TOKEN
+import com.prilepskiy.criptomanagerapp.data.repository.AuthorizationRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.repository.ConverterRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.repository.CriptoRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.room.user.UserDataBase
 import com.prilepskiy.criptomanagerapp.data.utils.HeaderInterceptor
+import com.prilepskiy.criptomanagerapp.domain.repository.AuthorizationRepository
 import com.prilepskiy.criptomanagerapp.domain.repository.ConverterRepository
 import com.prilepskiy.criptomanagerapp.domain.repository.CriptoRepository
 import okhttp3.OkHttpClient
@@ -47,13 +49,12 @@ val apiModule = module {
         }
 
     single<CriptoApiService> {retrofitService(BuildConfig.API_URL_CRIPTO).create(CriptoApiService::class.java) }
-    single <ConvertorApiService> {retrofitService(BuildConfig.API_URL_VALUTE).create(
-        ConvertorApiService::class.java)}
+    single <ConvertorApiService> {retrofitService(BuildConfig.API_URL_VALUTE).create(ConvertorApiService::class.java)}
 }
 val repositoryModule = module {
     single<CriptoRepository> { CriptoRepositoryImpl(get()) }
     single<ConverterRepository> { ConverterRepositoryImpl(get()) }
-    single<PreferenceService> { PreferenceServiceImpl(get()) }
+    single<AuthorizationRepository> { AuthorizationRepositoryImpl(get()) }
 }
 val databaseModule = module {
     fun provideUserDb(application: Application): UserDataBase {
@@ -73,5 +74,6 @@ val storageModule= module {
     }
 
     single { getStorage(androidApplication()) }
+    single<PreferenceService> { PreferenceServiceImpl(get()) }
     single<SharedPreferences.Editor> { getStorage(androidApplication()).edit() }
 }
