@@ -1,10 +1,15 @@
 package com.prilepskiy.criptomanagerapp.di
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.prilepskiy.criptomanagerapp.BuildConfig
-import com.prilepskiy.criptomanagerapp.data.dataservice.ConvertorApiService
-import com.prilepskiy.criptomanagerapp.data.dataservice.CriptoApiService
+import com.prilepskiy.criptomanagerapp.data.dataservice.apiservice.ConvertorApiService
+import com.prilepskiy.criptomanagerapp.data.dataservice.apiservice.CriptoApiService
+import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceService
+import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceServiceImpl
+import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceServiceImpl.Companion.STORAGE_TOKEN
 import com.prilepskiy.criptomanagerapp.data.repository.ConverterRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.repository.CriptoRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.room.user.UserDataBase
@@ -42,11 +47,13 @@ val apiModule = module {
         }
 
     single<CriptoApiService> {retrofitService(BuildConfig.API_URL_CRIPTO).create(CriptoApiService::class.java) }
-    single <ConvertorApiService> {retrofitService(BuildConfig.API_URL_VALUTE).create(ConvertorApiService::class.java)}
+    single <ConvertorApiService> {retrofitService(BuildConfig.API_URL_VALUTE).create(
+        ConvertorApiService::class.java)}
 }
 val repositoryModule = module {
     single<CriptoRepository> { CriptoRepositoryImpl(get()) }
     single<ConverterRepository> { ConverterRepositoryImpl(get()) }
+    single<PreferenceService> { PreferenceServiceImpl(get()) }
 }
 val databaseModule = module {
     fun provideUserDb(application: Application): UserDataBase {
@@ -59,4 +66,12 @@ val databaseModule = module {
     }
     single {provideUserDb(androidApplication())}
     single { get<UserDataBase>().userDao }
+}
+val storageModule= module {
+    fun getStorage(application: Application): SharedPreferences {
+        return application.getSharedPreferences(STORAGE_TOKEN, Context.MODE_PRIVATE)
+    }
+
+    single { getStorage(androidApplication()) }
+    single<SharedPreferences.Editor> { getStorage(androidApplication()).edit() }
 }

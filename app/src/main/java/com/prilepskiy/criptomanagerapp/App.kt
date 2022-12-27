@@ -26,7 +26,8 @@ class App : Application() {
         useCaseModule,
         viewModelModule,
         databaseModule,
-        apiModule
+        apiModule,
+        storageModule
         )
 
 }

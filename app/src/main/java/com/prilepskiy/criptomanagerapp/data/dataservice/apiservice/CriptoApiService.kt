@@ -1,4 +1,4 @@
-package com.prilepskiy.criptomanagerapp.data.dataservice
+package com.prilepskiy.criptomanagerapp.data.dataservice.apiservice
 
 import com.prilepskiy.criptomanagerapp.data.response.criptoResponse.CoinResponse
 import retrofit2.Response
