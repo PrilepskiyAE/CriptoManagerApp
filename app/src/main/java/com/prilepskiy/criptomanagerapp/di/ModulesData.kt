@@ -54,10 +54,10 @@ val apiModule = module {
 val repositoryModule = module {
     single<CriptoRepository> { CriptoRepositoryImpl(get()) }
     single<ConverterRepository> { ConverterRepositoryImpl(get()) }
-    single<AuthorizationRepository> { AuthorizationRepositoryImpl(get()) }
+    factory <AuthorizationRepository> { AuthorizationRepositoryImpl(get(),get()) }
 }
 val databaseModule = module {
-    fun provideUserDb(application: Application): UserDataBase {
+    fun provideUserDataBase(application: Application): UserDataBase {
         return Room.databaseBuilder(
             application,
             UserDataBase::class.java,
@@ -65,7 +65,7 @@ val databaseModule = module {
         ).allowMainThreadQueries()
             .build()
     }
-    single {provideUserDb(androidApplication())}
+    single {provideUserDataBase(androidApplication())}
     single { get<UserDataBase>().userDao }
 }
 val storageModule= module {
