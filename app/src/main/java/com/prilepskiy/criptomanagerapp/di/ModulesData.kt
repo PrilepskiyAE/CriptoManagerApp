@@ -1,14 +1,21 @@
 package com.prilepskiy.criptomanagerapp.di
 
 import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.prilepskiy.criptomanagerapp.BuildConfig
-import com.prilepskiy.criptomanagerapp.data.dataservice.ConvertorApiService
-import com.prilepskiy.criptomanagerapp.data.dataservice.CriptoApiService
+import com.prilepskiy.criptomanagerapp.data.dataservice.apiservice.ConvertorApiService
+import com.prilepskiy.criptomanagerapp.data.dataservice.apiservice.CriptoApiService
+import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceService
+import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceServiceImpl
+import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceServiceImpl.Companion.STORAGE_TOKEN
+import com.prilepskiy.criptomanagerapp.data.repository.AuthorizationRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.repository.ConverterRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.repository.CriptoRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.room.user.UserDataBase
 import com.prilepskiy.criptomanagerapp.data.utils.HeaderInterceptor
+import com.prilepskiy.criptomanagerapp.domain.repository.AuthorizationRepository
 import com.prilepskiy.criptomanagerapp.domain.repository.ConverterRepository
 import com.prilepskiy.criptomanagerapp.domain.repository.CriptoRepository
 import okhttp3.OkHttpClient
@@ -47,9 +54,10 @@ val apiModule = module {
 val repositoryModule = module {
     single<CriptoRepository> { CriptoRepositoryImpl(get()) }
     single<ConverterRepository> { ConverterRepositoryImpl(get()) }
+    factory <AuthorizationRepository> { AuthorizationRepositoryImpl(get(),get()) }
 }
 val databaseModule = module {
-    fun provideUserDb(application: Application): UserDataBase {
+    fun provideUserDataBase(application: Application): UserDataBase {
         return Room.databaseBuilder(
             application,
             UserDataBase::class.java,
@@ -57,6 +65,15 @@ val databaseModule = module {
         ).allowMainThreadQueries()
             .build()
     }
-    single {provideUserDb(androidApplication())}
+    single {provideUserDataBase(androidApplication())}
     single { get<UserDataBase>().userDao }
+}
+val storageModule= module {
+    fun getStorage(application: Application): SharedPreferences {
+        return application.getSharedPreferences(STORAGE_TOKEN, Context.MODE_PRIVATE)
+    }
+
+    single { getStorage(androidApplication()) }
+    single<PreferenceService> { PreferenceServiceImpl(get()) }
+    single<SharedPreferences.Editor> { getStorage(androidApplication()).edit() }
 }

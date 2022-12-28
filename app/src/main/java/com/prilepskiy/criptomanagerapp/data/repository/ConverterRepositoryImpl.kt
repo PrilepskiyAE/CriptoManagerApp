@@ -1,8 +1,7 @@
 package com.prilepskiy.criptomanagerapp.data.repository
 
 import com.prilepskiy.criptomanagerapp.core.ActionResult
-import com.prilepskiy.criptomanagerapp.data.dataservice.ConvertorApiService
-import com.prilepskiy.criptomanagerapp.data.dataservice.CriptoApiService
+import com.prilepskiy.criptomanagerapp.data.dataservice.apiservice.ConvertorApiService
 import com.prilepskiy.criptomanagerapp.data.response.convertorResponse.valuteResponse
 import com.prilepskiy.criptomanagerapp.data.utils.analyzeResponse
 import com.prilepskiy.criptomanagerapp.data.utils.makeApiCall

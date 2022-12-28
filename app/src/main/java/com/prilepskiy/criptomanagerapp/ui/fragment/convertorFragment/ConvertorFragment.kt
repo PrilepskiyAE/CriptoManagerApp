@@ -95,7 +95,7 @@ class ConvertorFragment : FragmentBaseNCMVVM<ConvertorViewModel, FragmentConvert
 
         }
     }
-fun clear(){
+    fun clear(){
    binding.editTextNumberDecimal.setText("")
     binding.editTextNumberDecimal2.setText("")
    viewModel.getStringRight("")

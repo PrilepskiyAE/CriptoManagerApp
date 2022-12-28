@@ -48,4 +48,9 @@ class ValuteDialog(
         super.onCancel(dialog)
         onCancelAction()
     }
+
+    override fun onPause() {
+        super.onPause()
+        onCancelAction()
+    }
 }

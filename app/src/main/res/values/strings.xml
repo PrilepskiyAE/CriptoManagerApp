@@ -25,5 +25,15 @@
     <string name="nominal_string">Nominal: %s</string>
     <string name="name_string">Name: %s</string>
     <string name="charcode_string">CharCode: %s</string>
+    <string name="login_hint">Login</string>
+    <string name="pass_hint">password</string>
+    <string name="email_hint">email</string>
+    <string name="login_btn">Login</string>
+    <string name="reg_btn">Registration</string>
+    <string name="aunt_error">aunt error</string>
+    <string name="logout_btn">Logout</string>
+    <string name="tv_welcome">Welcome,</string>
+    <string name="functionality_in_development">Functionality in development</string>
+    <string name="profile">profile</string>
 
 </resources>
