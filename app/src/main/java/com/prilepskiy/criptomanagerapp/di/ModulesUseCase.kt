@@ -10,4 +10,6 @@ val useCaseModule = module {
     factory <GetUserUseCase>{ GetUserUseCaseImpl(get()) }
     factory <SetUserUseCase>{ SetUserUseCaseImpl(get()) }
     factory <AddUserUseCase>{ AddUserUseCaseImpl(get()) }
+    factory <GetAllUserUseCase>{ GetAllUserUseCaseImpl(get()) }
+    factory <SearchUserUseCase>{ SearchUserUseCaseImpl(get()) }
 }
