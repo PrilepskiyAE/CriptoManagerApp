@@ -21,14 +21,13 @@ class ProfileLoginFragment : FragmentBaseNCMVVM<ProfileLoginViewModel, FragmentP
     override fun onViewClick() {
         binding.btLogin.setOnClickListener {
             if (!isReg){
-            viewModel.login("test")
-            navigateFragment(ProfileLoginFragmentDirections.actionProfileLoginFragmentToProfileAuthorizationFragment())
+                viewModel.searchUser(binding.etLogin.text.toString())
+           // navigateFragment(ProfileLoginFragmentDirections.actionProfileLoginFragmentToProfileAuthorizationFragment())
             }else
             {
-                viewModel.regesrationUser(binding.etLogin.text.toString(),binding.etPass.text.toString(),binding.etEmail.text.toString())
-                viewModel.login(binding.etLogin.text.toString())
-                Log.d("TAG", "onViewClick: ${viewModel.navigateLogin.replayCache} ")
-               // navigateFragment(ProfileLoginFragmentDirections.actionProfileLoginFragmentToProfileAuthorizationFragment())
+                viewModel.searchUser(binding.etLogin.text.toString())
+
+
             }
         }
         binding.btReg.setOnClickListener {
@@ -41,14 +40,35 @@ class ProfileLoginFragment : FragmentBaseNCMVVM<ProfileLoginViewModel, FragmentP
     }
 
     override fun onEach() {
-       onEach(viewModel.navigateLogin){
-           if (it==false){
-               binding.HintError.visibility=View.GONE
-               navigateFragment(ProfileLoginFragmentDirections.actionProfileLoginFragmentToProfileAuthorizationFragment())
+       onEach(viewModel.searchUser){
+           if (it?.isEmpty() == true){
+               Log.d("8885Tag", "onEach: ")
+               if (isReg) {
+                   binding.HintError.visibility = View.GONE
+                   viewModel.addUser(
+                       binding.etLogin.text.toString(),
+                       binding.etPass.text.toString(),
+                       binding.etEmail.text.toString()
+                   )
+                   viewModel.login(binding.etLogin.text.toString())
+                   navigateFragment(ProfileLoginFragmentDirections.actionProfileLoginFragmentToProfileAuthorizationFragment())
+               }
            }else{
+               if (isReg) {
                binding.HintError.visibility=View.VISIBLE
+               }else{
+                   if ( it?.get(0)?.username==binding.etLogin.text.toString() && it[0].password ==binding.etPass.text.toString() ){
+                       viewModel.login(binding.etLogin.text.toString())
+                       navigateFragment(ProfileLoginFragmentDirections.actionProfileLoginFragmentToProfileAuthorizationFragment())
+                   }else{
+                       binding.HintError.visibility=View.VISIBLE
+                   }
+
+               }
+
            }
        }
+
     }
 
 }

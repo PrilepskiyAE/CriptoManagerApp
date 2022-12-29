@@ -15,5 +15,5 @@ val viewModelModule = module {
     viewModel {ConvertorViewModel(get())}
     viewModel {ProfileViewModel(get())}
     viewModel {ProfileAuthorizationViewModel(get(),get())}
-    viewModel {ProfileLoginViewModel(get(),get())}
+    viewModel {ProfileLoginViewModel(get(),get(),get())}
 }

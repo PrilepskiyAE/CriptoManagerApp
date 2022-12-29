@@ -6,6 +6,7 @@ import com.prilepskiy.criptomanagerapp.data.room.entity.UserEntity
 import com.prilepskiy.criptomanagerapp.data.room.user.UserDataBase
 import com.prilepskiy.criptomanagerapp.domain.repository.AuthorizationRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.withContext
@@ -43,6 +44,24 @@ class AuthorizationRepositoryImpl(private val preferenceService: PreferenceServi
             return@withContext bloker
         }
 
+    override suspend fun addUser(login: String, pass: String, email: String) {
+        userDB.userDao.insert(
+            UserEntity(
+                username = login,
+                password = pass,
+                email = email,
+                favoriteCoinId =""
+            )
+        )
+    }
+
+    override suspend fun searchUser(login: String): Flow<List<UserEntity>> {
+       return userDB.userDao.searchUsers(login)
+    }
+
+    override suspend fun getAllUsers(): Flow<List<UserEntity>> {
+       return userDB.userDao.getAllUsers()
+    }
 
 
 }
