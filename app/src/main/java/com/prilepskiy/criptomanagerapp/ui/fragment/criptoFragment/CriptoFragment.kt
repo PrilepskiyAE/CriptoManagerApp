@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.prilepskiy.criptomanagerapp.R
+import com.prilepskiy.criptomanagerapp.data.room.entity.CoinFavoriteEntity
 import com.prilepskiy.criptomanagerapp.databinding.FragmentConvertorBinding
 import com.prilepskiy.criptomanagerapp.databinding.FragmentCriptoBinding
 import com.prilepskiy.criptomanagerapp.ui.adapter.coinadapter.CoinAdapter
@@ -26,6 +27,7 @@ class CriptoFragment : FragmentBaseNCMVVM<CriptoViewModel, FragmentCriptoBinding
         val listAdapter:CoinAdapter= CoinAdapter({
                   navigateFragment(CriptoFragmentDirections.actionNavigationCriptoToCriptoInfoFragment(it))
         },{
+            viewModel.like(CoinFavoriteEntity(idCoin = it.idCoin, username = "root"))
             Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
         })
         viewModel.getCoinList()
@@ -36,6 +38,9 @@ class CriptoFragment : FragmentBaseNCMVVM<CriptoViewModel, FragmentCriptoBinding
                 if (it.isNotEmpty())
                     binding.progressBar2.visibility=View.GONE
             }
+        }
+        onEach(viewModel.searchCoinFavorite){
+            Log.d("TAG", "onEach: $it ")
         }
 
     }

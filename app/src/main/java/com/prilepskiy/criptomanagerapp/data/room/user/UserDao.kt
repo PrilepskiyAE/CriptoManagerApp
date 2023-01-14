@@ -8,9 +8,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class UserDao: BaseDao<UserEntity>() {
-    @Query("SELECT * FROM users")
-    abstract fun getAllUsers(): Flow<List<UserEntity>>
+            @Query("SELECT * FROM users")
+            abstract fun getAllUsers(): Flow<List<UserEntity>>
             @Query("SELECT * FROM users WHERE username = :username")
-            abstract
-    fun searchUsers(username:String):Flow<List<UserEntity>>
+            abstract fun searchUsers(username:String):Flow<List<UserEntity>>
 }

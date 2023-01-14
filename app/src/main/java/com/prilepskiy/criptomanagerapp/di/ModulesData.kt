@@ -13,6 +13,7 @@ import com.prilepskiy.criptomanagerapp.data.dataservice.appservice.PreferenceSer
 import com.prilepskiy.criptomanagerapp.data.repository.AuthorizationRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.repository.ConverterRepositoryImpl
 import com.prilepskiy.criptomanagerapp.data.repository.CriptoRepositoryImpl
+import com.prilepskiy.criptomanagerapp.data.room.coin.CoinFavoriteDataBase
 import com.prilepskiy.criptomanagerapp.data.room.user.UserDataBase
 import com.prilepskiy.criptomanagerapp.data.utils.HeaderInterceptor
 import com.prilepskiy.criptomanagerapp.domain.repository.AuthorizationRepository
@@ -52,7 +53,7 @@ val apiModule = module {
     single <ConvertorApiService> {retrofitService(BuildConfig.API_URL_VALUTE).create(ConvertorApiService::class.java)}
 }
 val repositoryModule = module {
-    single<CriptoRepository> { CriptoRepositoryImpl(get()) }
+    single<CriptoRepository> { CriptoRepositoryImpl(get(),get(),get()) }
     single<ConverterRepository> { ConverterRepositoryImpl(get()) }
     factory <AuthorizationRepository> { AuthorizationRepositoryImpl(get(),get()) }
 }
@@ -67,6 +68,18 @@ val databaseModule = module {
     }
     single {provideUserDataBase(androidApplication())}
     single { get<UserDataBase>().userDao }
+
+    fun provideCoinFavoriteDataBase(application: Application): CoinFavoriteDataBase {
+        return Room.databaseBuilder(
+            application,
+            CoinFavoriteDataBase::class.java,
+            "CoinFavoriteDB"
+        ).allowMainThreadQueries()
+            .build()
+    }
+    single {provideCoinFavoriteDataBase(androidApplication())}
+    single { get<CoinFavoriteDataBase>().coinFavoriteDao }
+
 }
 val storageModule= module {
     fun getStorage(application: Application): SharedPreferences {
