@@ -11,7 +11,7 @@ import com.prilepskiy.criptomanagerapp.domain.repository.CriptoRepository
 
 class GetValuteListUseCaseImpl(private val converterRepository: ConverterRepository): GetValuteListUseCase {
     override suspend fun invoke(): ActionResult<List<ValuteModel>> {
-        Log.d("tag", "invoke: ")
+
         return  when(val apiData=converterRepository.getValuteList()){
             is ActionResult.Success -> {
 

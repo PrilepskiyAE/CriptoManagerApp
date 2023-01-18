@@ -25,7 +25,7 @@ class HomeFragment : FragmentBaseNCMVVM<HomeViewModel, FragmentHomeBinding>() {
         val listAdapter: CoinAdapter = CoinAdapter({
             navigateFragment(HomeFragmentDirections.actionNavigationHomeToCriptoInfoFragment(it))
         },{
-            Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
+            viewModel.coinList.value?.let { it1 -> viewModel.likeDislike(it, it1,true) }
         })
         val valuteListAdapter:ValuteAdapterList=ValuteAdapterList ({
             navigateFragment(HomeFragmentDirections.actionNavigationHomeToValuteFragment(it))
@@ -44,26 +44,28 @@ class HomeFragment : FragmentBaseNCMVVM<HomeViewModel, FragmentHomeBinding>() {
         onEach(viewModel.coinList){
             binding.progressBar.visibility=View.VISIBLE
             listAdapter.submitList(it)
-            if (it != null) {
-                if (it.isNotEmpty())
+
+                if (!it.isNullOrEmpty()){
                     binding.progressBar.visibility=View.GONE
+                    viewModel.getCoinFavorite()
             }
+        }
+
+        onEach(viewModel.searchList){
+            viewModel.isLike()
         }
         onEach(viewModel.valuteList){
             binding.progressBar2.visibility=View.VISIBLE
             valuteListAdapter.submitList(it)
             if (it != null) {
                 if (it.isNotEmpty())
-                    Log.d(TAG, "onEach: ")
+
                     binding.progressBar2.visibility=View.GONE
             }
         }
     }
 
-    override fun onView() {
-        viewModel.getValuteList()
-        viewModel.getCoinList()
-    }
+
     companion object{
         const val TAG:String="HomeFragment"
     }

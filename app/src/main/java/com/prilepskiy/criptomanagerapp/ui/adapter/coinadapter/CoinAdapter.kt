@@ -1,6 +1,7 @@
 package com.prilepskiy.criptomanagerapp.ui.adapter.coinadapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -12,14 +13,14 @@ import com.prilepskiy.criptomanagerapp.databinding.ItemCoinInfoFavoriteBinding
 import com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel
 import com.prilepskiy.criptomanagerapp.ui.base.BaseViewHolder
 
-class CoinAdapter(private val onCoinClicked: (coin:CoinInfoModel)-> Unit,private val onFavoriteClicked: ()-> Unit): ListAdapter<CoinInfoModel,BaseViewHolder<CoinInfoModel,ViewBinding>>(CoinItemDiffCallback()) {
+class CoinAdapter(private val onCoinClicked: (coin:CoinInfoModel)-> Unit,private val onFavoriteClicked: (coin:CoinInfoModel)-> Unit): ListAdapter<CoinInfoModel,BaseViewHolder<CoinInfoModel,ViewBinding>>(CoinItemDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<CoinInfoModel,ViewBinding> {
         val binding = when(viewType){
             COIN -> {
                 ItemCoinInfoBinding.inflate(LayoutInflater.from(parent.context),parent,false)
             }
             COIN_FAVORITE -> {
-                ItemCoinInfoBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+                ItemCoinInfoFavoriteBinding.inflate(LayoutInflater.from(parent.context),parent,false)
             }
             else -> {throw RuntimeException("Unknown view type: $viewType")}
         }
@@ -56,7 +57,7 @@ class CoinAdapter(private val onCoinClicked: (coin:CoinInfoModel)-> Unit,private
                         tvLastUpdate.text = String.format(lastUpdateTemplate, item.lastUpdate)
 
                         buttomFavorite.setOnClickListener {
-                            onFavoriteClicked()
+                            onFavoriteClicked(item)
                         }
 
 
@@ -75,7 +76,7 @@ class CoinAdapter(private val onCoinClicked: (coin:CoinInfoModel)-> Unit,private
                         tvPrice.text = String.format(priceTemplate, item.price)
                         tvLastUpdate.text = String.format(lastUpdateTemplate, item.lastUpdate)
                         buttomFavorite.setOnClickListener {
-                            onFavoriteClicked()
+                            onFavoriteClicked(item)
                         }
 
                     }

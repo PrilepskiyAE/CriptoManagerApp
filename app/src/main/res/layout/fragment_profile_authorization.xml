@@ -42,14 +42,18 @@
                 android:layout_margin="@dimen/space_24"
                 tools:text="Email" />
 
-            <TextView
-                android:id="@+id/tvInfo8"
-                android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_coin"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/space_24"
-                android:gravity="center"
-                android:text="@string/functionality_in_development"
-                android:textStyle="bold" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:listitem="@layout/item_coin_info" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btLogout"

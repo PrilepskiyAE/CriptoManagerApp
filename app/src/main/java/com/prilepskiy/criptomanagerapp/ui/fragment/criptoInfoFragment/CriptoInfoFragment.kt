@@ -35,10 +35,6 @@ class CriptoInfoFragment : FragmentBaseNCMVVM<CriptoInfoFragmentViewModel, Fragm
         }
     }
 
-    override fun onViewClick() {
-        binding.buttomFavorite.setOnClickListener {
-            Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
-        }
-    }
+
 
 }
