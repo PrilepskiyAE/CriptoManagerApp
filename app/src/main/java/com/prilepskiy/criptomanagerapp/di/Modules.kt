@@ -10,8 +10,8 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val viewModelModule = module {
-    viewModel {HomeViewModel(get(),get())}
-    viewModel {CriptoViewModel(get())}
+    viewModel {HomeViewModel(get(),get(),get(),get(),get(),get(),get())}
+    viewModel {CriptoViewModel(get(),get(),get(),get(),get(),get())}
     viewModel {ConvertorViewModel(get())}
     viewModel {ProfileViewModel(get())}
     viewModel {ProfileAuthorizationViewModel(get(),get())}

@@ -16,4 +16,5 @@ val useCaseModule = module {
     factory <DislikeUseCase>{ DislikeUseCaseImpl(get()) }
     factory <LikeUseCase>{ LikeUseCaseImpl(get()) }
     factory <GetFavoriteUseCase>{ GetFavoriteUseCaseImpl(get()) }
+    factory <UpdateCoinInfoModelUseCase>{UpdateCoinInfoModelUseCaseImpl(get())}
 }

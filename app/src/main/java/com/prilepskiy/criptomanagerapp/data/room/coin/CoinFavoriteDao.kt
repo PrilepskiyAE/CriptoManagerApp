@@ -1,6 +1,7 @@
 package com.prilepskiy.criptomanagerapp.data.room.coin
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Query
 import com.prilepskiy.criptomanagerapp.data.room.BaseDao
 import com.prilepskiy.criptomanagerapp.data.room.entity.CoinFavoriteEntity
@@ -14,4 +15,7 @@ abstract class CoinFavoriteDao: BaseDao<CoinFavoriteEntity>() {
 
     @Query("SELECT * FROM coin_favorite")
     abstract fun getCoinFavorite(): Flow<List<CoinFavoriteEntity>>
+
+    @Query("DELETE FROM coin_favorite WHERE idCoin=:data")
+    abstract suspend fun deleteCoinFavorite(data:String)
 }

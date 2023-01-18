@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 
 class GetFavoriteUseCaseImpl(private val criptoRepository: CriptoRepository): GetFavoriteUseCase {
     override suspend fun invoke(): Flow<List<CoinFavoriteEntity>> {
+
+
         return criptoRepository.getFavoriteCoinInUser()
     }
 }

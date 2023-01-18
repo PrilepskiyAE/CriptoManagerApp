@@ -31,7 +31,7 @@ class AuthorizationRepositoryImpl(private val preferenceService: PreferenceServi
                     }
                 }
                 if (!bloker){
-                    Log.d("test", "regestrationUser: ")
+
                     userDB.userDao.insert(UserEntity(
                         username = login,
                         password = pass,

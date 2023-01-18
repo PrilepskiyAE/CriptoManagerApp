@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 class DislikeUseCaseImpl(private val criptoRepository: CriptoRepository): DislikeUseCase {
     override suspend fun invoke(coin: CoinFavoriteEntity){
-        criptoRepository.deleteCoinFavorite(coin)
+        criptoRepository.deleteCoinFavorite(coin.idCoin)
     }
 }

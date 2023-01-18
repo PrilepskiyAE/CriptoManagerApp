@@ -22,26 +22,37 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class CriptoFragment : FragmentBaseNCMVVM<CriptoViewModel, FragmentCriptoBinding>() {
     override val binding: FragmentCriptoBinding by viewBinding()
     override val viewModel: CriptoViewModel by viewModel()
+    val listAdapter:CoinAdapter= CoinAdapter({
+        navigateFragment(CriptoFragmentDirections.actionNavigationCriptoToCriptoInfoFragment(it))
+    },{
+        viewModel.coinList.value?.let { it1 -> viewModel.likeDislike(it, it1,true) }
 
+        //Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
+    })
     override fun onEach() {
-        val listAdapter:CoinAdapter= CoinAdapter({
-                  navigateFragment(CriptoFragmentDirections.actionNavigationCriptoToCriptoInfoFragment(it))
-        },{
-            viewModel.like(CoinFavoriteEntity(idCoin = it.idCoin, username = "root"))
-            Toast.makeText(requireContext(), "Functionality in development", Toast.LENGTH_SHORT).show()
-        })
-        viewModel.getCoinList()
-        binding.listCoin.adapter=listAdapter
+
+
+
         onEach(viewModel.coinList){
             listAdapter.submitList(it)
-            if (it != null) {
-                if (it.isNotEmpty())
+            if (!it.isNullOrEmpty()) {
                     binding.progressBar2.visibility=View.GONE
+                    viewModel.getCoinFavorite()
+
             }
+
         }
-        onEach(viewModel.searchCoinFavorite){
-            Log.d("TAG", "onEach: $it ")
+
+        onEach(viewModel.searchList){
+            viewModel.isLike()
         }
+
+    }
+
+    override fun onView() {
+        super.onView()
+        binding.listCoin.adapter=listAdapter
+
 
     }
 

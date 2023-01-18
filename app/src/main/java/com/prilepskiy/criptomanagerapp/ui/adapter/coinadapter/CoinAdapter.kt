@@ -1,6 +1,7 @@
 package com.prilepskiy.criptomanagerapp.ui.adapter.coinadapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
@@ -19,7 +20,7 @@ class CoinAdapter(private val onCoinClicked: (coin:CoinInfoModel)-> Unit,private
                 ItemCoinInfoBinding.inflate(LayoutInflater.from(parent.context),parent,false)
             }
             COIN_FAVORITE -> {
-                ItemCoinInfoBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+                ItemCoinInfoFavoriteBinding.inflate(LayoutInflater.from(parent.context),parent,false)
             }
             else -> {throw RuntimeException("Unknown view type: $viewType")}
         }

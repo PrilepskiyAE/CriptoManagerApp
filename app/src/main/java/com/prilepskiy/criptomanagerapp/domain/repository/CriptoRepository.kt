@@ -10,5 +10,5 @@ interface CriptoRepository {
     suspend fun getFavoriteCoin(): Flow<List<CoinFavoriteEntity>>
     suspend fun getFavoriteCoinInUser(): Flow<List<CoinFavoriteEntity>>
     suspend fun addCoinFavorite(coin:CoinFavoriteEntity)
-    suspend fun deleteCoinFavorite(coin:CoinFavoriteEntity)
+    suspend fun deleteCoinFavorite(coinId:String)
 }

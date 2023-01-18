@@ -39,6 +39,13 @@ class ValuteDialog(
         viewModel.getValuteList()
 
     }
+
+    override fun onViewClick() {
+        super.onViewClick()
+        binding.toolbarStandard.setOnSecondItemClickListener { dismiss() }
+//        binding.toolbarStandard.setOnFirstItemClickListener { dismiss() }
+    }
+
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         onDismissAction()
