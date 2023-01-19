@@ -42,7 +42,7 @@ class ProfileLoginFragment : FragmentBaseNCMVVM<ProfileLoginViewModel, FragmentP
     override fun onEach() {
        onEach(viewModel.searchUser){
            if (it?.isEmpty() == true){
-               Log.d("8885Tag", "onEach: ")
+
                if (isReg) {
                    binding.HintError.visibility = View.GONE
                    viewModel.addUser(

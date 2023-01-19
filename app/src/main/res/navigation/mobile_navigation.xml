@@ -95,5 +95,12 @@
         <action
             android:id="@+id/action_profileAuthorizationFragment_to_profileLoginFragment"
             app:destination="@id/profileLoginFragment" />
+        <action
+            android:id="@+id/action_profileAuthorizationFragment_to_criptoInfoFragment"
+            app:destination="@id/criptoInfoFragment" >
+            <argument
+                android:name="cripto"
+                app:argType="com.prilepskiy.criptomanagerapp.domain.model.coin.CoinInfoModel" />
+        </action>
     </fragment>
 </navigation>
