@@ -1,5 +1,5 @@
 # CriptoManagerApp
-Steck:
+# used steck:
 ## 1) Architecture:
 ###       1.1) MVVM;
 ###       1.2) Clean arch;
